@@ -1,0 +1,95 @@
+Objective
+
+Your objective is to perform a set of tasks described below. Please try to complete as much as possible within trial time-frame, even if you do not finish all requirements.
+Preconditions
+
+    Use java technologies.
+    Use a dependency management tool of your choice (Maven, Gradle or SBT).
+    Work on you machine.
+
+Problem Context
+
+You are an architect in an organization that provides easy to scale and modern solutions, you are required to architect, design and implement a client server application, the client is either a modern web client or a desktop application with a simple user interface, the server is a virtual currency exchange rate publishing server and the communication channel is TCP or HTTP.
+
+The server would expose different services for the client application to consume, list of exchange rates for different currencies, search for the exchange rate for a specific currency and a currency converter to convert a specific amount of money from a currency to another.
+
+Use one of the public currency converter API(https://openexchangerates.org/signup/free, https://currencylayer.com/documentation, etc... ) at server side to get latest conversion rates.
+
+The client application should provide simple and clear interface to the end user to perform different functionalities exposed by the server, listing currencies with their exchange rates, search box for a specific currency, currency exchange box and a refresh button to refresh the rates from the server.
+
+The client application should be responsive, any freezes in the client app is not acceptable, the network operations should be Non blocking operations, the user should be notified that there is a server call and get notified once response received and rendered without any hangs.
+
+You should use modern Java technologies to architect and implement the application with the mentioned specifications.
+Requirements
+
+    High level architecture for the whole solution, Clarifying the architecture approach used to satisfy all mentioned functional and nonfunctional requirements in the problem and the reasons to choose this approach and these technologies.
+
+    Design for the APIs for the mentioned functional requirements.
+
+    Implementation of these APIs.
+
+    A modern client application.
+
+    Build, Deployment and running steps for the client and the server applications.
+    Video records showing the application running and perform required functionality. 
+
+To be evaluated
+
+        Architecture, design and the architecture approach used.
+
+        Used technologies.
+
+        Fulfillment of running and deployment Instructions.
+
+        Implementing all mention functionalities specially the ones in bold.
+        Code quality (style, documentation and performance).
+
+Deliverable
+Application Demo
+
+Record the video demonstration of the architecture, design and the implemented components using Wink (or any other screen recording tool) intermixed with each other (Please submit the video in a format that is compatible to be run either on a browser or video player). Do not upload the video anywhere. Save it to your local machine and include it with the delivery package.
+Database scripts
+
+SQL scripts to create required databases, if any.
+Readme Document
+
+Create a text file with the following information
+
+    Instructions to install and configure any prerequisites for the development environment
+    Instructions to create the databases and prepare the source code to build properly including dependencies
+    Any assumptions made and missing requirements that are not covered in the requirements
+    Any feedback you may wish to give about improving the assignment
+
+Architecture Document
+
+A doc file containing the following information and diagrams
+
+    Different views of the architecture/design along with all the needed UML diagrams.
+    Detailed technical design of the system, with to-be implemented services and applications.
+    Detailed technical design of the interfaces with any external systems.
+    Identification of technologies and design patterns used and the rationale behind every choice.
+    All the useful diagrams to support your design including (but not limited to). 
+        use case diagrams, component diagrams, application layer diagrams, activity and sequence diagrams,
+        deployment and network diagrams, class diagrams, ER diagrams.
+
+Source Code
+
+You should deliver implemented source code including any dependencies. For the dependencies that could not be included due to size, the Readme should have proper instructions on how to download and install them.
+Delivery / What to submit
+
+Please, read and follow this section carefully. Any delivery that does not follow this section will score much less or simply won't be evaluated. First of all, review Delivery Instructions (Sent to your personnel mail), which describes general delivery process. Delivery for this assignment should consist of:Archive named <your_name – Software Architect - Java>.zip containing the following:
+
+    README.txt -> containing report about work done.
+    Architecture and Design.doc -> contains your solution architecture and design.
+    Wink Folder -> Wink video shows you application running, and perform required functionality.
+    Code Folder -> contains your solution.
+    Deployment -> all artifacts and detailed instructions to deploy your solution.
+
+So the resulting structure of your delivery should be:
+
+    <your_name - Software Architect - Java>.zip
+    <your_name - Software Architect - Java>.zip \ README.txt
+    <your_name - Software Architect - Java>.zip \ Design.doc
+    <your_name - Software Architect - Java>.zip \Code\
+    <your_name - Software Architect - Java>.zip \SQL\
+    <your_name - Software Architect - Java>.zip \Deployment\
