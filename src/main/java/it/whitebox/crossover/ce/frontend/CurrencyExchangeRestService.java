@@ -1,5 +1,6 @@
 package it.whitebox.crossover.ce.frontend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -34,16 +35,14 @@ public class CurrencyExchangeRestService {
 	 * @param currency
 	 * @return
 	 */
-//	public @ResponseBody List<ConfigurazioneMissione> getConfigurazioneMissione(
-//		@RequestParam("idMissione") String idMissione, 
-//		@RequestParam("tipoOperazione") ConfigurazioneMissioneTipoOperazione tipoOperazione,
-//		@RequestParam("idConfigurazione") String idConfigurazione
-
-	@RequestMapping(value="/api/getExchangeRate", method = RequestMethod.GET)
-	public @ResponseBody String getExchangeRate(
+	@RequestMapping(value="/api/getExchangeRate")
+	public @ResponseBody CurrencyExchangeRate getExchangeRate(
 		@RequestParam("currencyCode") String currencyCode){
 		log.debug("getExchangeRate(" + currencyCode +")");
-		return "aa";
+		
+		CurrencyExchangeRate res = new CurrencyExchangeRate("AAA", "name AAA", 12);
+		
+		return res;
 	}
 
 	
@@ -53,10 +52,17 @@ public class CurrencyExchangeRestService {
 	 * @param listCurrencyCodes
 	 * @return
 	 */
-	@RequestMapping(value="/api/listExchangeRate", method = RequestMethod.GET)
+	@RequestMapping(value="/api/listExchangeRate")
 	public @ResponseBody List<CurrencyExchangeRate> listExchangeRate(
 			@RequestParam("currencyCodes") List<String> listCurrencyCodes){
-		return null;
+		log.debug("listExchangeRate(" + listCurrencyCodes +")");
+		
+		CurrencyExchangeRate res = new CurrencyExchangeRate("AAA", "name AAA", 12);
+		List<CurrencyExchangeRate> listCER = new ArrayList<>();
+		listCER.add(res);
+		listCER.add(res);
+
+		return listCER;
 	}
 	
 
@@ -69,12 +75,14 @@ public class CurrencyExchangeRestService {
 	 * @param amount
 	 * @return
 	 */
-	@RequestMapping(value="/api/convert", method = RequestMethod.GET)
+	@RequestMapping(value="/api/convert")
 	public @ResponseBody double convert(
 		@RequestParam("sourceCurrencyCode") String sourceCurrencyCode, 
-		@RequestParam("targeteCurrencyCode") String targetCurrencyCode, 
+		@RequestParam("targetCurrencyCode") String targetCurrencyCode, 
 		@RequestParam("amount") double amount){
-		return 0;
+		log.debug("convert(" + sourceCurrencyCode +", " + targetCurrencyCode + ", " + amount+")");
+
+		return 23.27;
 	}
 
 //	@RequestMapping(method = RequestMethod.GET)
