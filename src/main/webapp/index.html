@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./assets/libs/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="./assets/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./assets/libs/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="./assets/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+<body>
+<div ng-app="currencyApp" ng-controller="currencyCtrl" class="container">
+	<div class="page-header">
+		<h1>My Project</h1>
+		<p class="lead">Three exercises</p>
+	</div>
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#tab1">First exercise</a></li>
+		<li><a data-toggle="tab" href="#tab2">Second exercise</a></li>
+		<li><a data-toggle="tab" href="#tab3">Third exercise</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="tab1" class="tab-pane fade in active">
+			<h3>Insert one currency code and press "Search"</h3>
+			<form>
+				<div class="form-group">
+					<label for="currencyCode">Currency code</label>
+					<input type="text" class="form-control" ng-model="currencyCode" placeholder="Currency code">
+				</div>
+				<button ng-click="singleSearch()" class="btn btn-primary">Search</button>
+			</form>
+			<div ng-show="execSingleSearch" class="resultBox">
+				<div ng-show="waitSingleSearch" class="alert alert-info">Waiting for search result ...</div>
+				<div ng-hide="waitSingleSearch" class="table-responsive">          
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Description</th>
+								<th>Exchange rate</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{currency.code}}</td>
+								<td>{{currency.description}}</td>
+								<td>{{currency.rate}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="tab2" class="tab-pane fade">
+			<h3>Insert many currency codes and press "Search"</h3>
+			<form>
+				<div class="form-group">
+					<label for="currencyCodes">Currency code(s)</label>
+					<input type="text" class="form-control" ng-model="currencyCodes" placeholder="Currency code(s)">
+				</div>
+				<button ng-click="multiSearch()" class="btn btn-primary">Search</button>
+			</form>
+			<div ng-show="execMultiSearch" class="resultBox">
+				<div ng-show="waitMultiSearch" class="alert alert-info">Waiting for search result ...</div>
+				<div ng-hide="waitMultiSearch" class="table-responsive">          
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Code</th>
+								<th>Description</th>
+								<th>Exchange rate</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="cur in currencies">
+								<td>{{$index + 1}}</td>
+								<td>{{cur.code}}</td>
+								<td>{{cur.description}}</td>
+								<td>{{cur.rate}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="tab3" class="tab-pane fade">
+			<h3>Insert source currency, target currency, source amount and press "Get target amount"</h3>
+			<form>
+				<div class="form-group">
+					<label for="sourceCurrencyCode">Source currency code</label>
+					<input type="text" class="form-control" ng-model="sourceCurrencyCode" placeholder="Currency code">
+				</div>
+				<div class="form-group">
+					<label for="targetCurrencyCode">Target currency code</label>
+					<input type="text" class="form-control" ng-model="targetCurrencyCode" placeholder="Currency code">
+				</div>
+				<div class="form-group">
+					<label for="sourceAmount">Source amount</label>
+					<input type="text" class="form-control" ng-model="sourceAmount" placeholder="Source amount">
+				</div>
+				<button ng-click="getTargetAmount()" class="btn btn-primary">Get target amount</button>
+			</form>
+			<div ng-show="execGetTargetAmount" class="resultBox">
+				<div ng-show="waitGetTargetAmount" class="alert alert-info">Waiting for target amount ...</div>
+				<div ng-hide="waitGetTargetAmount" class="table-responsive">          
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Source currency</th>
+								<th>Target currency</th>
+								<th>Source amount</th>
+								<th>Target amount</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>{{amount.sourceCurrencyCode}}</th>
+								<th>{{amount.targetCurrencyCode}}</th>
+								<th>{{amount.sourceAmount}}</th>
+								<th>{{amount.targetAmount}}</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./assets/js/currencyModule.js"></script>
+</body>
+</html>

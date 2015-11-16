@@ -24,11 +24,11 @@ import lombok.Setter;
  * @author alagna
  *
  */
-@RestController
-@RequestMapping(produces = "application/json")
-public class CurrencyExchangeRestService {
+//@RestController
+//@RequestMapping(produces = "application/json")
+public class CurrencyExchangeRestFakeService {
 
-	private static Logger log = Logger.getLogger(CurrencyExchangeRestService.class);
+	private static Logger log = Logger.getLogger(CurrencyExchangeRestFakeService.class);
 	
 	@Autowired @Setter
 	private CurrencyExchangeBusinessService buzService;
@@ -44,7 +44,7 @@ public class CurrencyExchangeRestService {
 		@RequestParam("currencyCode") String currencyCode){
 		log.debug("getExchangeRate(" + currencyCode +")");
 		
-		CurrencyExchangeRate res = buzService.getExchangeRate(currencyCode);
+		CurrencyExchangeRate res = new CurrencyExchangeRate("AAA", "name AAA", 12);
 		
 		log.debug("  response:\n" + res);
 
