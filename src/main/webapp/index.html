@@ -11,13 +11,13 @@
 <body>
 <div ng-app="currencyApp" ng-controller="currencyCtrl" class="container">
 	<div class="page-header">
-		<h1>My Project</h1>
-		<p class="lead">Three exercises</p>
+		<h1>Currency Exchange Rate publishing server</h1>
+		<p class="lead">User Console</p>
 	</div>
 	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#tab1">First exercise</a></li>
-		<li><a data-toggle="tab" href="#tab2">Second exercise</a></li>
-		<li><a data-toggle="tab" href="#tab3">Third exercise</a></li>
+		<li class="active"><a data-toggle="tab" href="#tab1">Search Exchange Rate</a></li>
+		<li><a data-toggle="tab" href="#tab2">List Exchange Rates</a></li>
+		<li><a data-toggle="tab" href="#tab3">Convert</a></li>
 	</ul>
 
 	<div class="tab-content">
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 		<div id="tab2" class="tab-pane fade">
-			<h3>Insert many currency codes and press "Search"</h3>
+			<h3>Insert a list of comma-separated currency codes and press "Search"</h3>
 			<form>
 				<div class="form-group">
 					<label for="currencyCodes">Currency code(s)</label>
@@ -127,6 +127,8 @@
 			</div>
 		</div>
 	</div>
+	<hr/>
+	<a href="codes.html"  onclick="window.open('codes.html', 'newwindow', 'width=300, height=500, scrollbars=yes'); return false;">Currency codes</a>
 </div>
 <script src="./assets/js/currencyModule.js"></script>
 </body>
