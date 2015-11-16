@@ -1,6 +1,5 @@
 package it.whitebox.crossover.ce.frontend;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -46,7 +45,7 @@ public class CurrencyExchangeRestService {
 		
 		CurrencyExchangeRate res = buzService.getExchangeRate(currencyCode);
 		
-		log.debug("  response:\n" + res);
+		log.debug("  response: " + res);
 
 		return res;
 	}
@@ -63,10 +62,9 @@ public class CurrencyExchangeRestService {
 			@RequestParam("currencyCodes") List<String> listCurrencyCodes){
 		log.debug("listExchangeRate(" + listCurrencyCodes +")");
 		
-		CurrencyExchangeRate res = new CurrencyExchangeRate("AAA", "name AAA", 12);
-		List<CurrencyExchangeRate> listCER = new ArrayList<>();
-		listCER.add(res);
-		listCER.add(res);
+		List<CurrencyExchangeRate> listCER = buzService.listExchangeRate(listCurrencyCodes);
+		
+		log.debug("  response: " + listCER);
 
 		return listCER;
 	}
@@ -87,8 +85,12 @@ public class CurrencyExchangeRestService {
 		@RequestParam("targetCurrencyCode") String targetCurrencyCode, 
 		@RequestParam("amount") double amount){
 		log.debug("convert(" + sourceCurrencyCode +", " + targetCurrencyCode + ", " + amount+")");
+		
+		double res = buzService.convert(sourceCurrencyCode, targetCurrencyCode, amount);
+		res = Math.floor(res * 100) / 100;
+		log.debug(  "response: " + res);
 
-		return 23.27;
+		return res;
 	}
 
 

@@ -42,8 +42,7 @@ public class CurrencyExchangeBusinessService {
 	 * @return
 	 */
 	public CurrencyExchangeRate getExchangeRate(String currencyCode){
-		log.debug("getExchangeRate(" + currencyCode +")");
-		populateCCDHM();
+		populateMap();
 		
 		if (!mapCurrencyCodeDescription.containsKey(currencyCode)){
 			log.error("Currency code not found: " + currencyCode);
@@ -62,11 +61,11 @@ public class CurrencyExchangeBusinessService {
 	 * @return
 	 */
 	private CurrencyExchangeRate getLastRate(String currencyCode, List<CurrencyExchangeRate> listCER) {
+		populateMap();
 		for (CurrencyExchangeRate cer : listCER) {
 			if (cer.getCode().equals(currencyCode)) {
 				// it completes the CER with the name
 				cer.setName(mapCurrencyCodeDescription.get(currencyCode));
-				log.debug("  response: " + cer);
 				return cer;
 			}
 		}
@@ -83,17 +82,14 @@ public class CurrencyExchangeBusinessService {
 	 * @return
 	 */
 	public List<CurrencyExchangeRate> listExchangeRate(List<String> listCurrencyCodes){
-		log.debug("listExchangeRate(" + listCurrencyCodes +")");
-		
 		List<CurrencyExchangeRate> listCER = exchangeRateService.getLatestER();
+		List<CurrencyExchangeRate> res = new ArrayList<>();
 		for (String currencyCode : listCurrencyCodes) {
 			CurrencyExchangeRate cer = getLastRate(currencyCode, listCER);
 			if (cer.getName()!=null)
-				listCER.add(cer);
+				res.add(cer);
 		}
-		
-		log.debug("  response: " + listCER);
-		return listCER;
+		return res;
 	}
 	
 
@@ -107,8 +103,6 @@ public class CurrencyExchangeBusinessService {
 	 * @return
 	 */
 	public double convert(String sourceCurrencyCode, String targetCurrencyCode, double amount){
-		log.debug("convert(" + sourceCurrencyCode +", " + targetCurrencyCode + ", " + amount+")");
-
 		CurrencyExchangeRate source = getExchangeRate(sourceCurrencyCode);
 		if (source.getName()==null){
 			log.error("Currency code " + sourceCurrencyCode + " not found");
@@ -121,7 +115,6 @@ public class CurrencyExchangeBusinessService {
 		}
 
 		double res = amount * target.getValue()/source.getValue();
-		log.debug("  response: " + res);
 
 		return res;
 	}
@@ -129,7 +122,7 @@ public class CurrencyExchangeBusinessService {
 	/**
 	 * Populates the HashMap of the Currency code and descriptions
 	 */
-	private Map<String, String> populateCCDHM(){
+	private Map<String, String> populateMap(){
 		if (mapCurrencyCodeDescription.size()==0) {
 			List<CurrencyExchangeRate> listCE = exchangeRateService.getAllCurrencies();
 			for (CurrencyExchangeRate currencyExchangeRate : listCE) {
