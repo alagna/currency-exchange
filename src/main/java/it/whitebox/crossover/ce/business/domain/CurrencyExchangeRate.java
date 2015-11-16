@@ -9,5 +9,5 @@ public class CurrencyExchangeRate {
 	
 	private String code;
 	private String name;
-	private double value;
+	private double rate;
 }

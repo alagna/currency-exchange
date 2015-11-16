@@ -114,7 +114,7 @@ public class CurrencyExchangeBusinessService {
 			return -1;
 		}
 
-		double res = amount * target.getValue()/source.getValue();
+		double res = amount * target.getRate()/source.getRate();
 
 		return res;
 	}

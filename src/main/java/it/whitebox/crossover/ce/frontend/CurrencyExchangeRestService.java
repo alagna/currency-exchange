@@ -33,6 +33,11 @@ public class CurrencyExchangeRestService {
 
 	private static Logger log = Logger.getLogger(CurrencyExchangeRestService.class);
 	
+	/**
+	 * Delay in seconds used to generate some network delay and better see the gui behaviour.
+	 */
+	private static final int DELAY_IN_SECS = 0;
+	
 	@Autowired @Setter
 	private CurrencyExchangeBusinessService buzService;
 
@@ -51,7 +56,7 @@ public class CurrencyExchangeRestService {
 		GetExchangeRateResponse response = new GetExchangeRateResponse(res);
 		
 		log.debug("  response: " + res);
-
+		sleep(DELAY_IN_SECS);
 		return response;
 	}
 
@@ -71,7 +76,7 @@ public class CurrencyExchangeRestService {
 		ListExchangeRateResponse response = new ListExchangeRateResponse(listCER);
 		
 		log.debug("  response: " + listCER);
-
+		sleep(DELAY_IN_SECS);
 		return response;
 	}
 	
@@ -98,8 +103,18 @@ public class CurrencyExchangeRestService {
 		Conversion conversion = new Conversion(sourceCurrencyCode, targetCurrencyCode, amount, res);
 		ConvertResponse response = new ConvertResponse(conversion);
 		log.debug(  "response: " + res);
-
+		sleep(DELAY_IN_SECS);
 		return response;
+	}
+	
+	/**
+	 * Delay used to make the response of the REST servide slow, in order to appreciate how
+	 * the GUI manages the network delays
+	 */
+	private void sleep(int seconds){
+		try {
+			Thread.sleep(seconds*1000);
+		} catch (Exception e) {	}
 	}
 
 

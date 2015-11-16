@@ -28,7 +28,7 @@
 					<label for="currencyCode">Currency code</label>
 					<input type="text" class="form-control" ng-model="currencyCode" placeholder="Currency code">
 				</div>
-				<button ng-click="singleSearch()" class="btn btn-primary">Search</button>
+				<button ng-hide="waitSingleSearch" ng-click="singleSearch()" class="btn btn-primary">Search</button>
 			</form>
 			<div ng-show="execSingleSearch" class="resultBox">
 				<div ng-show="waitSingleSearch" class="alert alert-info">Waiting for search result ...</div>
@@ -36,16 +36,16 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th>Code</th>
-								<th>Description</th>
+								<th>Currency code</th>
+								<th>Currency name</th>
 								<th>Exchange rate</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>{{currency.code}}</td>
-								<td>{{currency.description}}</td>
-								<td>{{currency.rate}}</td>
+								<td>{{currencyExchange.code}}</td>
+								<td>{{currencyExchange.name}}</td>
+								<td>{{currencyExchange.rate}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -59,7 +59,7 @@
 					<label for="currencyCodes">Currency code(s)</label>
 					<input type="text" class="form-control" ng-model="currencyCodes" placeholder="Currency code(s)">
 				</div>
-				<button ng-click="multiSearch()" class="btn btn-primary">Search</button>
+				<button ng-hide="waitMultiSearch" ng-click="multiSearch()" class="btn btn-primary">Search</button>
 			</form>
 			<div ng-show="execMultiSearch" class="resultBox">
 				<div ng-show="waitMultiSearch" class="alert alert-info">Waiting for search result ...</div>
@@ -68,16 +68,16 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Code</th>
-								<th>Description</th>
+								<th>Currency code</th>
+								<th>Currency name</th>
 								<th>Exchange rate</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="cur in currencies">
+							<tr ng-repeat="cur in currencyExchanges">
 								<td>{{$index + 1}}</td>
 								<td>{{cur.code}}</td>
-								<td>{{cur.description}}</td>
+								<td>{{cur.name}}</td>
 								<td>{{cur.rate}}</td>
 							</tr>
 						</tbody>
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		<div id="tab3" class="tab-pane fade">
-			<h3>Insert source currency, target currency, source amount and press "Get target amount"</h3>
+			<h3>Insert source currency, target currency, source amount and press "Convert"</h3>
 			<form>
 				<div class="form-group">
 					<label for="sourceCurrencyCode">Source currency code</label>
@@ -97,14 +97,14 @@
 					<input type="text" class="form-control" ng-model="targetCurrencyCode" placeholder="Currency code">
 				</div>
 				<div class="form-group">
-					<label for="sourceAmount">Source amount</label>
-					<input type="text" class="form-control" ng-model="sourceAmount" placeholder="Source amount">
+					<label for="amount">Amount</label>
+					<input type="text" class="form-control" ng-model="amount" placeholder="Amount">
 				</div>
-				<button ng-click="getTargetAmount()" class="btn btn-primary">Get target amount</button>
+				<button ng-hide="waitConvert" ng-click="convert()" class="btn btn-primary">Convert</button>
 			</form>
-			<div ng-show="execGetTargetAmount" class="resultBox">
-				<div ng-show="waitGetTargetAmount" class="alert alert-info">Waiting for target amount ...</div>
-				<div ng-hide="waitGetTargetAmount" class="table-responsive">          
+			<div ng-show="execConvert" class="resultBox">
+				<div ng-show="waitConvert" class="alert alert-info">Waiting for result ...</div>
+				<div ng-hide="waitConvert" class="table-responsive">          
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -116,10 +116,10 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th>{{amount.sourceCurrencyCode}}</th>
-								<th>{{amount.targetCurrencyCode}}</th>
-								<th>{{amount.sourceAmount}}</th>
-								<th>{{amount.targetAmount}}</th>
+								<th>{{conversion.sourceCurrencyCode}}</th>
+								<th>{{conversion.targetCurrencyCode}}</th>
+								<th>{{conversion.amount}}</th>
+								<th>{{conversion.targetAmount}}</th>
 							</tr>
 						</tbody>
 					</table>
