@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.whitebox.crossover.ce.business.CurrencyExchangeBusinessService;
 import it.whitebox.crossover.ce.business.domain.CurrencyExchangeRate;
+import it.whitebox.crossover.ce.frontend.response.Conversion;
+import it.whitebox.crossover.ce.frontend.response.ConvertResponse;
+import it.whitebox.crossover.ce.frontend.response.GetExchangeRateResponse;
+import it.whitebox.crossover.ce.frontend.response.ListExchangeRateResponse;
 import lombok.Setter;
 
 /**
@@ -39,15 +43,16 @@ public class CurrencyExchangeRestService {
 	 * @return
 	 */
 	@RequestMapping(value="/api/getExchangeRate")
-	public @ResponseBody CurrencyExchangeRate getExchangeRate(
+	public @ResponseBody GetExchangeRateResponse getExchangeRate(
 		@RequestParam("currencyCode") String currencyCode){
 		log.debug("getExchangeRate(" + currencyCode +")");
 		
 		CurrencyExchangeRate res = buzService.getExchangeRate(currencyCode);
+		GetExchangeRateResponse response = new GetExchangeRateResponse(res);
 		
 		log.debug("  response: " + res);
 
-		return res;
+		return response;
 	}
 
 	
@@ -58,15 +63,16 @@ public class CurrencyExchangeRestService {
 	 * @return
 	 */
 	@RequestMapping(value="/api/listExchangeRate")
-	public @ResponseBody List<CurrencyExchangeRate> listExchangeRate(
+	public @ResponseBody ListExchangeRateResponse listExchangeRate(
 			@RequestParam("currencyCodes") List<String> listCurrencyCodes){
 		log.debug("listExchangeRate(" + listCurrencyCodes +")");
 		
 		List<CurrencyExchangeRate> listCER = buzService.listExchangeRate(listCurrencyCodes);
+		ListExchangeRateResponse response = new ListExchangeRateResponse(listCER);
 		
 		log.debug("  response: " + listCER);
 
-		return listCER;
+		return response;
 	}
 	
 
@@ -80,7 +86,7 @@ public class CurrencyExchangeRestService {
 	 * @return
 	 */
 	@RequestMapping(value="/api/convert")
-	public @ResponseBody double convert(
+	public @ResponseBody ConvertResponse convert(
 		@RequestParam("sourceCurrencyCode") String sourceCurrencyCode, 
 		@RequestParam("targetCurrencyCode") String targetCurrencyCode, 
 		@RequestParam("amount") double amount){
@@ -88,9 +94,12 @@ public class CurrencyExchangeRestService {
 		
 		double res = buzService.convert(sourceCurrencyCode, targetCurrencyCode, amount);
 		res = Math.floor(res * 100) / 100;
+		
+		Conversion conversion = new Conversion(sourceCurrencyCode, targetCurrencyCode, amount, res);
+		ConvertResponse response = new ConvertResponse(conversion);
 		log.debug(  "response: " + res);
 
-		return res;
+		return response;
 	}
 
 
