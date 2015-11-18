@@ -9,6 +9,11 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+/**
+ * Replaces the web.xml
+ * @author alagna
+ *
+ */
 public class WebApplicationContext implements WebApplicationInitializer {
 
 	private static final String DISPATCHER_SERVLET_NAME = "dispatcher";

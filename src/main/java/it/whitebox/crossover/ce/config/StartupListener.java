@@ -6,7 +6,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 /**
- * Listener dello start del sistema: utilizzato per esempio per innescare il popolamento del db
+ * Listener of the start of the system. Used to do some startup actions (populate cache, ...)
  * @author alagna
  *
  */

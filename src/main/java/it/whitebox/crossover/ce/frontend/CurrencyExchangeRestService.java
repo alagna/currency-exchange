@@ -36,7 +36,7 @@ public class CurrencyExchangeRestService {
 	/**
 	 * Delay in seconds used to generate some network delay and better see the gui behaviour.
 	 */
-	private static final int DELAY_IN_SECS = 0;
+	private static final int DELAY_IN_SECS = 5;
 	
 	@Autowired @Setter
 	private CurrencyExchangeBusinessService buzService;
